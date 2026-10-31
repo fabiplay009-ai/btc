@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="description" content="Bitcoin-Lotterie-Miner für das Handy – echtes SHA-256d im Browser.">
+  <title>Pocket Miner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="icon.svg" alt="" width="36" height="36">
+    <div>
+      <h1>Pocket Miner</h1>
+      <p class="sub">Bitcoin-Lotterie-Miner · SHA-256d</p>
+    </div>
+    <span id="net-badge" class="badge">lädt…</span>
+  </header>
+
+  <main>
+    <section class="hero card">
+      <div class="label">Hashrate</div>
+      <div id="hashrate" class="big">0 H/s</div>
+      <div class="row small">
+        <span>Laufzeit <b id="uptime">0:00:00</b></span>
+        <span>Hashes <b id="total">0</b></span>
+      </div>
+      <button id="toggle" class="btn start">▶ Start</button>
+      <div id="status" class="status">Bereit</div>
+    </section>
+
+    <section class="grid">
+      <div class="card stat">
+        <div class="label">Beste Share</div>
+        <div id="best" class="val">–</div>
+        <div class="hint">Difficulty deines besten Hashes</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Netzwerk-Difficulty</div>
+        <div id="netdiff" class="val">–</div>
+        <div class="hint">Nötig für einen Block</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Chance pro Tag</div>
+        <div id="chance" class="val">–</div>
+        <div class="hint">einen Block zu finden</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Erwartete Zeit</div>
+        <div id="eta" class="val">–</div>
+        <div class="hint">bis zum ersten Block</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Einstellungen</h2>
+      <label class="setting">
+        <span>Threads <b id="threads-val">1</b></span>
+        <input id="threads" type="range" min="1" max="4" value="1">
+      </label>
+      <label class="setting">
+        <span>Leistung <b id="intensity-val">50 %</b></span>
+        <input id="intensity" type="range" min="10" max="100" step="10" value="50">
+      </label>
+      <label class="check">
+        <input id="only-charging" type="checkbox" checked>
+        <span>Nur minen, wenn das Handy lädt <small id="battery"></small></span>
+      </label>
+      <label class="check">
+        <input id="wakelock" type="checkbox">
+        <span>Bildschirm wach halten</span>
+      </label>
+      <p class="hint">Tipp: Wenige Threads und 30–50 % Leistung schonen Akku und Temperatur.
+        Mobile Browser pausieren das Minen, sobald die App im Hintergrund ist.</p>
+    </section>
+
+    <section class="card">
+      <h2>Aktueller Block-Header</h2>
+      <dl class="kv">
+        <dt>Blockhöhe</dt><dd id="height">–</dd>
+        <dt>Vorheriger Block</dt><dd id="prev" class="mono">–</dd>
+        <dt>Bester Hash</dt><dd id="besthash" class="mono">–</dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2>Protokoll</h2>
+      <ol id="log" class="log"></ol>
+    </section>
+
+    <section class="card info">
+      <h2>Was passiert hier?</h2>
+      <p>Die App rechnet echtes Bitcoin-Proof-of-Work: doppeltes SHA-256 auf einem 80-Byte-Blockheader,
+        der auf dem aktuellen Bitcoin-Block aufbaut. Jeder Hash ist ein Los – ist er kleiner als das
+        Netzwerk-Target, wäre das ein gültiger Block.</p>
+      <p><b>Ehrlich gesagt:</b> Ein Handy schafft ein paar Millionen Hashes pro Sekunde, das Bitcoin-Netzwerk
+        hunderte Trillionen. Die Chance auf einen Block ist astronomisch klein. Das ist ein Lern- und
+        Lotterie-Projekt, kein Geldverdiener. Ein Treffer könnte in dieser Version auch nicht eingereicht werden
+        (siehe README).</p>
+    </section>
+  </main>
+
+  <footer>Kein Tracking · Läuft komplett auf deinem Gerät · Daten: mempool.space</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
